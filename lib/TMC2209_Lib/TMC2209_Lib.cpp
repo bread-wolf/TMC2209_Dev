@@ -7,7 +7,7 @@
 
 #include "TMC2209_Lib.hpp"
 
-#define TMC2209_VERSION_BYTE    0x40  /* Chip version. */
+#define TMC2209_VERSION_BYTE    0x21  /* Chip version. */
 
 TMC2209::TMC2209(HardwareSerial& serialPort, uint32_t baudrate, uint8_t chipAddress, uint8_t enablePin)
     : TMCSerial(serialPort, baudrate, chipAddress), _enablePin(enablePin), _isConfigured(false)
@@ -27,8 +27,9 @@ bool TMC2209::begin()
     /* Set up enable pin. */
     pinMode(_enablePin, OUTPUT);
 
-    /* Disable bridges. */
-    digitalWrite(_enablePin, LOW);
+    /* Disable bridges.
+     * On TMC2209 the input is active LOW. */
+    digitalWrite(_enablePin, HIGH);
 
     /* Write fundamental parameters. */
 
