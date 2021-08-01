@@ -46,6 +46,12 @@ void TMC2209::invertShaft()
     TMCSerial::writeField(TMC22XX_SHAFT, !(bool)(TMCSerial::readField(TMC22XX_SHAFT)));
 }
 
+void TMC2209::enableStealthChop(bool enable)
+{
+    // Logic is low to enable stealthChop.
+    TMCSerial::writeField(TMC22XX_EN_SPREADCYCLE, !enable);
+}
+
 bool TMC2209::isChipAlive()
 {
     if (_isConfigured != true)

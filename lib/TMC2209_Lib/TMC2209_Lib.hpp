@@ -29,6 +29,10 @@ class TMC2209 : private TMCSerial
         /* Invert direction of shaft rotation. */
         void invertShaft();
 
+        /* Switch between stealthchop and spreadcycle modes.
+         * SpreadCycle is on by default. */
+        void enableStealthChop(bool enable);
+
         /* Check chip is alive :
          *    - If chip is unconfigured, check version number
          *    - If chip is configured, check error flag
