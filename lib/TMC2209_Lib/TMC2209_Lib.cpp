@@ -32,7 +32,9 @@ bool TMC2209::begin()
     digitalWrite(_enablePin, HIGH);
 
     /* Write fundamental parameters. */
-
+    TMCSerial::writeField(TMC22XX_PDN_DISABLE, true);       // We will always use the UART interface here.
+    TMCSerial::writeField(TMC22XX_MSTEP_REG_SELECT, true);  // Pins MS1 and MS2 select the chip ADDRESS.
+    TMCSerial::writeField(TMC22XX_TEST_MODE, false);        // Normal operation setting.
 
     return true;
 }
