@@ -39,6 +39,12 @@ bool TMC2209::begin()
     return true;
 }
 
+void TMC2209::invertShaft()
+{
+    // Write inverse of actual bit in shaft register.
+    TMCSerial::writeField(TMC22XX_SHAFT, !(bool)(TMCSerial::readField(TMC22XX_SHAFT)));
+}
+
 bool TMC2209::isChipAlive()
 {
     if (_isConfigured != true)

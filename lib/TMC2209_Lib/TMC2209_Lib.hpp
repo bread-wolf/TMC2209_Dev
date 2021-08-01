@@ -26,6 +26,9 @@ class TMC2209 : private TMCSerial
         /* Checks driver is present, put driver in a disabled safe state for configuration. */
         bool begin();
 
+        /* Invert direction of shaft rotation. */
+        void invertShaft();
+
         /* Check chip is alive :
          *    - If chip is unconfigured, check version number
          *    - If chip is configured, check error flag
